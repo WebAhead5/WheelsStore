@@ -1,14 +1,13 @@
 
 
-function Addfunction()
-{
-    var Company=document.getElementById("Company").value;
-    var Measure=document.getElementById("Measure").value;
-    var Quantity=document.getElementById("Quantity").value;
-    var Speedcode=document.getElementById("Speedcode").value;
-    var MODEL=document.getElementById("MODEL").value;
+function Addfunction() {
+    var Company = document.getElementById("Company").value;
+    var Measure = document.getElementById("Measure").value;
+    var Quantity = document.getElementById("Quantity").value;
+    var Speedcode = document.getElementById("Speedcode").value;
+    var MODEL = document.getElementById("MODEL").value;
 
-    
+
     params = `Company=${Company}&Measure=${Measure}&Quantity=${Quantity}&Speedcode=${Speedcode}&MODEL=${MODEL} `;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -30,83 +29,103 @@ function Addfunction()
     xhr.send(params);
 }
 
-function searchbyMesurefunction()
-{
-    var Measure=document.getElementById("searchby").value;
+function searchbyMesurefunction() {
+    var Measure = document.getElementById("searchby").value;
 
 }
 
 
-function searchbyCompanyfunction()
-{
-    var Company=document.getElementById("searchby").value;
+function searchbyCompanyfunction() {
+    var company = document.getElementById("searchby").value;
 
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        //console.log(xhr.response)
+        if (xhr.readyState === 4 && xhr.status === 200) {
+
+            console.log(xhr.response);
+        }
+    };
+    xhr.open('GET', `/searchComp?companyname=${company}`);
+    xhr.send();
+
+     
+    
 }
 
 
 function request(url, cb) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-      //console.log(xhr.response)
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        cb(null, xhr.responseText);
-        //console.log(xhr.response);
-      }
+        //console.log(xhr.response)
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            cb(null, xhr.responseText);
+            //console.log(xhr.response);
+        }
     };
     xhr.open('GET', url, true);
     xhr.send();
-  }
-  
-function GetAllWheels(err,data)
-{
-        if (err) {
-          console.error(err);
-        } else {
-          //console.log("This is the else", data)
-          var items = JSON.parse(data);
-          var table = document.getElementById('dataTable');
-          Array.from(table.childNodes).forEach(node => {
-            if (node.nodeName == 'TR') table.removeChild(node);
-            else return
-          });
-          /* create a row in table for each user returned from DB */
-          items.forEach(function (item) {
-            var row = document.createElement('tr');
-            var id = document.createElement('td');
-            id.innerHTML = item.id;
-            row.appendChild(id);
-
-            var Company = document.createElement('td');
-            product.innerHTML = item.Company;
-            row.appendChild(Company);
-
-            var Measure = document.createElement('td');
-            price.innerHTML = item.Measure;
-            row.appendChild(Measure);
-
-            var quantity = document.createElement('td');
-            quantity.innerHTML = item.quantity;
-            row.appendChild(quantity);
-
-            var Speedcode = document.createElement('td');
-            quantity.innerHTML = item.Speedcode;
-            row.appendChild(Speedcode);
-
-            var Model = document.createElement('td');
-            quantity.innerHTML = item.Model;
-            row.appendChild(Model);
-
-
-            table.appendChild(row);
-    });
-
 }
+
+function GetAllWheels(err, data) {
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        //console.log(xhr.response)
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var data = JSON.parse(xhr.response)
+            var table = document.getElementById("dataTable")
+            Cleartable();
+            data.forEach(item => {
+                var row = document.createElement('tr');
+                var id = document.createElement('th');
+                id.innerHTML = item.id;
+                row.appendChild(id);
+
+                var Company = document.createElement('th');
+                Company.innerHTML = item.company;
+                row.appendChild(Company);
+
+                console.log(item);
+                var Measure = document.createElement('th');
+                Measure.innerHTML = item.mesure;
+                row.appendChild(Measure);
+
+                var Quantity = document.createElement('th');
+                Quantity.innerHTML = item.quantity;
+                row.appendChild(Quantity);
+
+                var Model = document.createElement('th');
+                Model.innerHTML = item.model;
+                row.appendChild(Model);
+
+             
+
+                var Speedcode = document.createElement('th');
+                Speedcode.innerHTML = item.speedcode;
+                row.appendChild(Speedcode);
+
+
+                table.appendChild(row);
+            })
+
+        }
+    };
+    xhr.open('GET', '/showwheels');
+    xhr.send();
+
 };
-request('/showwheels', updateDom);
 
 
-function removefunction()
+function Cleartable()
 {
 
+var table=document.getElementById('dataTable');
 
+Array.from(table.childNodes).forEach(item => {
+    if (item.nodeName == 'TR') table.removeChild(item);
+    else return
+
+  
+})
 }

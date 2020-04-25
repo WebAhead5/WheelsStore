@@ -12,7 +12,11 @@ if(Url === "/")
 handler.homePagehandler(request,response);
 }
 
-if(Url=== "/search")
+if(Url.includes("/searchComp"))
+{
+handler.searchHandlerComp(request,response);                    
+}
+if(Url=== "/searchComp1")
 {
 handler.searchHandler()
 }
@@ -24,10 +28,10 @@ if(Url=== "/add")
 
 }
 
-if(Url=== "/showHandler")
+if(Url=== "/showwheels")
 {
 
-    handler.showWheels;
+    handler.showwheels(request,response);
 
 }/*
 if(Url=== "/delete")

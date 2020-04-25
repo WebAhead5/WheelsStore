@@ -12,10 +12,10 @@ function getAllWheels(cb) {
     })
 }
 
-function getByCompany(Company ) {
-    database.query(`select * from wheels  where Company = '${Company}'; `, (err, res) => {
+function getByCompany(Company, cb ) {
+    console.log('hiiii')
+    databaseConnection.query(`select * from wheels  where Company = '${Company}'; `, (err, res) => {
         if (err) {
-            console.log("errrrrrrrr");
         }
         else {
             cb(null, JSON.stringify(res.rows));
@@ -28,7 +28,7 @@ function getByCompany(Company ) {
 }
 
 function getByMeasure(Measure) {
-    database.query(`select * from wheels  where Measure = '${Measure}'; `, (err, res) => {
+    databaseConnection.query(`select * from wheels  where Measure = '${Measure}'; `, (err, res) => {
         if (err) {
             console.log("errrrrrrrr");
         }
@@ -40,3 +40,5 @@ function getByMeasure(Measure) {
     })
 
 }
+
+module.exports={getAllWheels,getByCompany,getByMeasure}

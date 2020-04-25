@@ -1,6 +1,8 @@
 var path = require("path")
 var fs = require("fs")
-const getData = require('./DB/queries/getdata');
+const  getData  = require('./DB/queries/getdata');
+var url=require('url');
+var qs=require("querystring")
 
 const extension = {
 html: 'text/html'
@@ -50,9 +52,9 @@ const publichandler = (request, response) => {
 
 
 
-const searchHandler= (request,response)=>
+const showwheels= (request,response)=>
 {
-    getdata.getAllWheels((err, res) => {
+    getData.getAllWheels((err, res) => {
         if (err) {
             console.log(err)
             response.end('Sorry error found');
@@ -69,7 +71,22 @@ const deleteHandler=(request,response)=>
 }
 const addHandler=(request,response)=>
 {
+}
+const searchHandlerComp=(request,response)=>
+{
+
+    var urlcompany=url.parse(request.url).query;
+    var company=qs.parse(urlcompany).companyname;
+    console.log('hiiiii');
+    getData.getByCompany(company,(err, res) => {
+        if (err) {
+            console.log(err)
+            response.end('Sorry error found');
+        }
+        response.writeHead(200, { 'Content-Type': 'application/json' });
+        response.end(res)
+    })
 
 }
 
-module.exports = { homePagehandler, publichandler,searchHandler,addHandler } 
+module.exports = { homePagehandler, publichandler,addHandler,searchHandlerComp ,showwheels} 

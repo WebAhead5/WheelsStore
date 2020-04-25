@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js"
+    "start": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "dotenv": "^8.2.0",
     "env": "0.0.2",
     "env2": "^2.2.2",
+    "nodemon": "^2.0.3",
     "pg": "^8.0.3"
   }
 }
