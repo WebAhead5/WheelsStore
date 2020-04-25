@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css" media="screen" /> 
+    <script src="index.js"></script>
+    
+    <title>Wheels</title>
+
+
+</head>
+<body>
+    <h1>Welcome to Abu rajab Wheels Shop</h1>
+        <br></br>
+    <form method='POST' action="/add"  >  
+        <input type="text" id="Company" placeholder="Company" value=''  >
+        <input type="text" id="measure" placeholder="Measure" value =''>
+        <input type="text" id="Quantity" placeholder="Quantity">
+        <input type="text" id="Speedcode" placeholder="Speedcode">
+        <input type="text" id="MODEL" placeholder="MODEL">
+
+        <button type="submit" id="add" onclick="Addfunction()" > Add wheels </button> 
+    </form>
+
+    <br></br>
+
+    <h style ="font-weight: bold;"> Search by measure or companyname: </h>
+    <br> </br>
+    <input type="text" name="searchby" id = "searchby" value ="" placeholder="Enter Company/Measure">
+
+    <button id ="bymeasure" onclick="searchbyMesurefunction()"> Measure </button>
+    <button id ="bycompanyname" onclick= "searchbyCompanyfunction()"> Companyname </button>
+
+    <button id ="allwheels" onclick="GetAllWheels()"> ShowAllWheels </button>
+
+
+    
+    <button id="remove" > Remove </button>
+
+
+
+    
+    <div id= "table-content">
+        <table id="dataTable" class="table table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Measure</th>
+                    <th>Quantity</th>
+                    <th>MODEL</th>
+                    <th>Speedcode</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

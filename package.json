@@ -1,0 +1,26 @@
+{
+  "name": "wheelsstore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebAhead5/WheelsStore.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebAhead5/WheelsStore/issues"
+  },
+  "homepage": "https://github.com/WebAhead5/WheelsStore#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "env": "0.0.2",
+    "env2": "^2.2.2",
+    "pg": "^8.0.3"
+  }
+}
