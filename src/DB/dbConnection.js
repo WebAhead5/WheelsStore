@@ -18,4 +18,4 @@ if (!connectionString) throw new Error('ENVIRMENT VARIABLE DB_URL MUST BE SET');
 
 module.exports = new Pool({
     connectionString, ssl: !connectionString.includes('localhost')
-})
+}) 
